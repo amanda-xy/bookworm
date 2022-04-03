@@ -23,7 +23,7 @@ class BookList extends Component {
               this.setState({ selected: book.id });
             }}
           >
-            {book.name}
+            {book.title}
           </li>
         );
       });

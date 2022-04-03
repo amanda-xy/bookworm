@@ -16,7 +16,7 @@ function App() {
       <div id="main">
         <h1>Ninja's Reading List</h1>
         <BookList />
-        <AddBook />
+        {/* <AddBook /> */}
       </div>
     </ApolloProvider>
   );

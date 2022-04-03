@@ -3,7 +3,7 @@ import { gql } from "apollo-boost";
 const getBooksQuery = gql`
   {
     books {
-      name
+      title
       id
     }
   }
@@ -12,16 +12,25 @@ const getBooksQuery = gql`
 const getAuthorsQuery = gql`
   {
     authors {
-      name
+      firstName
+      lastName
       id
     }
   }
 `;
 
 const addBookMutation = gql`
-  mutation ($name: String!, $genre: String!, $authorId: ID!) {
-    addBook(name: $name, genre: $genre, authorId: $authorId) {
-      name
+  mutation ($title: String!, $description: String!, $numberOfPages: Int!, $image: String!, $genre: String!, $publicationDate: String!, $authorId: ID!) {
+    addBook(
+      title: $title
+      description: $description
+      numberOfPages: $numberOfPages
+      image: $image
+      genre: $genre
+      publicationDate: $publicationDate
+      authorId: $authorId
+    ) {
+      title
       id
     }
   }
@@ -31,14 +40,14 @@ const getBookQuery = gql`
   query ($id: ID) {
     book(id: $id) {
       id
-      name
+      title
       genre
       author {
         id
-        name
-        age
+        firstName
+        lastName
         books {
-          name
+          title
           id
         }
       }
