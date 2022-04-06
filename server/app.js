@@ -6,6 +6,8 @@ const cors = require("cors");
 
 const app = express();
 
+app.use(express.json({ limit: "50mb" }));
+
 // allow cross-origin requests
 app.use(cors());
 
