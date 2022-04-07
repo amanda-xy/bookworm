@@ -1,14 +1,23 @@
 // components
 // import BookList from "./components/BookList";
-import AddBook from "./components/AddBook";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/home";
+import Books from "./pages/books";
+import Authors from "./pages/authors";
 
 function App() {
   return (
-    <div id="main">
-      <h1>Ninja's Reading List</h1>
-      {/* <BookList /> */}
-      <AddBook />
-    </div>
+    <Router>
+      <div className="content">
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/books" element={<Books />} />
+          <Route path="/authors" element={<Authors />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
