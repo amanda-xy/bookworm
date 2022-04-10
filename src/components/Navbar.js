@@ -1,5 +1,5 @@
 import { StyledNavbar } from "./styles/StyledNavbar";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../images/logo.svg";
 
 const Navbar = () => {
@@ -10,11 +10,15 @@ const Navbar = () => {
         <label>Bookworm</label>
       </div>
       <div className="links">
-        <Link to="/" className="active">
+        <NavLink to="/" className={({ isActive }) => (isActive ? "active link" : "link")}>
           Home
-        </Link>
-        <Link to="/books">Books</Link>
-        <Link to="/authors">Authors</Link>
+        </NavLink>
+        <NavLink to="/books" className={({ isActive }) => (isActive ? "active link" : "link")}>
+          Books
+        </NavLink>
+        <NavLink to="/authors" className={({ isActive }) => (isActive ? "active link" : "link")}>
+          Authors
+        </NavLink>
       </div>
     </StyledNavbar>
   );

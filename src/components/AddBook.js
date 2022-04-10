@@ -1,7 +1,6 @@
 // import { Component } from "react";
 // import { graphql } from "react-apollo";
 import { getAuthorsQuery, addBookMutation, getBooksQuery } from "../queries/queries";
-// import { flowRight as compose } from "lodash";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 
