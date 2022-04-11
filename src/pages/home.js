@@ -44,6 +44,15 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="recommended-for-you-container">
+        <StyledTitle className="large">Recommended for you</StyledTitle>
+        <div className="recommended-books-container">
+          <img src={require("../images/theDoorsOfEden.jpg")} alt="" />
+          <img src={require("../images/queenOfNothing.jpg")} alt="" />
+          <img src={require("../images/songOfAchilles.jpg")} alt="" />
+          <img src={require("../images/sunSister.jpg")} alt="" />
+        </div>
+      </div>
     </StyledHome>
   );
 };

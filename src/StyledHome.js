@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const StyledHome = styled.div`
   display: flex;
   padding: 0px 100px;
+  flex-direction: column;
+  height: fit-content;
 
   .reading-data-container {
     display: flex;
@@ -50,6 +52,7 @@ export const StyledHome = styled.div`
     flex-direction: column;
     width: 400px;
     height: 100%;
+    min-height: 100%;
     position: relative;
 
     .achievements {
@@ -73,9 +76,28 @@ export const StyledHome = styled.div`
   }
 
   .update-button-container {
+    margin-top: 50px;
     justify-self: flex-end;
     align-self: flex-end;
-    position: absolute;
-    bottom: 0;
+  }
+
+  .recommended-for-you-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .recommended-books-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+
+    img {
+      height: 180px;
+      width: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      margin-right: 30px;
+    }
   }
 `;
