@@ -12,5 +12,6 @@ export const StyledTitle = styled.div`
   }
 
   &.small {
+    font-size: 24px;
   }
 `;

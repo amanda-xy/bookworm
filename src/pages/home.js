@@ -1,4 +1,4 @@
-import { StyledHome } from "../StyledHome";
+import { StyledHome } from "../styles/StyledHome";
 import { StyledTitle } from "../components/styles/StyledTitle";
 import ProgressBar from "../components/ProgressBar";
 import Button from "../components/Button";
