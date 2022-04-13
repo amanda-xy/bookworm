@@ -9,6 +9,8 @@ export const StyledButton = styled.button`
   font-weight: 600;
   font-family: Quicksand;
   font-size: 20px;
+  word-break: keep-all;
+  white-space: nowrap;
 
   &:hover {
     cursor: pointer;

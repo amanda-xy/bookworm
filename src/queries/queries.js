@@ -3,9 +3,23 @@ import { gql } from "@apollo/client";
 const getBooksQuery = gql`
   {
     books {
-      title
       id
+      title
+      description
+      numberOfPages
+      image
       genre
+      publicationDate
+      author {
+        id
+        firstName
+        lastName
+
+        books {
+          id
+          title
+        }
+      }
     }
   }
 `;

@@ -1,8 +1,9 @@
-// import { Component } from "react";
-// import { graphql } from "react-apollo";
-import { getAuthorsQuery, addBookMutation, getBooksQuery } from "../queries/queries";
+import { getAuthorsQuery, addBookMutation } from "../queries/queries";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
+import { StyledAddBook } from "./styles/StyledAddBook";
+import { StyledTitle } from "./styles/StyledTitle";
+import Button from "./Button";
 
 const AddBook = (props) => {
   const uploadImage = async (e) => {
@@ -85,81 +86,86 @@ const AddBook = (props) => {
   }
 
   return (
-    <form id="add-book" onSubmit={(e) => submitForm(e)}>
-      <div className="field">
-        <label>Book title:</label>
-        <input
-          type="text"
-          onChange={(e) =>
-            setBookData((prev) => {
-              return { ...prev, title: e.target.value };
-            })
-          }
-        />
-      </div>
-      <div className="field">
-        <label>Description:</label>
-        <input
-          type="text"
-          onChange={(e) =>
-            setBookData((prev) => {
-              return { ...prev, description: e.target.value };
-            })
-          }
-        />
-      </div>
-      <div className="field">
-        <label>Number of pages:</label>
-        <input
-          type="number"
-          onChange={(e) =>
-            setBookData((prev) => {
-              return { ...prev, numberOfPages: e.target.value };
-            })
-          }
-        />
-      </div>
-      <div className="field">
-        <label>Image:</label>
-        <input type="file" alt="none" onChange={(e) => uploadImage(e)} />
-      </div>
-      <div className="field">
-        <label>Genre:</label>
-        <input
-          type="text"
-          onChange={(e) =>
-            setBookData((prev) => {
-              return { ...prev, genre: e.target.value };
-            })
-          }
-        />
-      </div>
-      <div className="field">
-        <label>Publication date:</label>
-        <input
-          type="text"
-          onChange={(e) =>
-            setBookData((prev) => {
-              return { ...prev, publicationDate: e.target.value };
-            })
-          }
-        />
-      </div>
-      <div className="field">
-        <label>Author:</label>
-        <select
-          onChange={(e) =>
-            setBookData((prev) => {
-              return { ...prev, authorId: e.target.value };
-            })
-          }
-        >
-          <option>Select author</option>
-          {displayAuthors()}
-        </select>
-      </div>
-      <button>+</button>
-    </form>
+    <StyledAddBook>
+      <StyledTitle className="large">Add Book</StyledTitle>
+      <form id="add-book" onSubmit={(e) => submitForm(e)}>
+        <div className="field">
+          <label>Book title</label>
+          <input
+            type="text"
+            onChange={(e) =>
+              setBookData((prev) => {
+                return { ...prev, title: e.target.value };
+              })
+            }
+          />
+        </div>
+        <div className="field">
+          <label>Description</label>
+          <textarea
+            cols="35"
+            rows="4"
+            type="text"
+            onChange={(e) =>
+              setBookData((prev) => {
+                return { ...prev, description: e.target.value };
+              })
+            }
+          />
+        </div>
+        <div className="field">
+          <label>Number of pages</label>
+          <input
+            type="number"
+            onChange={(e) =>
+              setBookData((prev) => {
+                return { ...prev, numberOfPages: e.target.value };
+              })
+            }
+          />
+        </div>
+        <div className="field">
+          <label>Image</label>
+          <input type="file" alt="none" onChange={(e) => uploadImage(e)} />
+        </div>
+        <div className="field">
+          <label>Genre:</label>
+          <input
+            type="text"
+            onChange={(e) =>
+              setBookData((prev) => {
+                return { ...prev, genre: e.target.value };
+              })
+            }
+          />
+        </div>
+        <div className="field">
+          <label>Publication date</label>
+          <input
+            type="text"
+            onChange={(e) =>
+              setBookData((prev) => {
+                return { ...prev, publicationDate: e.target.value };
+              })
+            }
+          />
+        </div>
+        <div className="field">
+          <label>Author</label>
+          <select
+            onChange={(e) =>
+              setBookData((prev) => {
+                return { ...prev, authorId: e.target.value };
+              })
+            }
+          >
+            <option>Select author</option>
+            {displayAuthors()}
+          </select>
+        </div>
+        <Button text="Add Book" />
+      </form>
+    </StyledAddBook>
   );
 };
 
