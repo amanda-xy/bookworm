@@ -1,7 +1,7 @@
-import { StyledHome } from "../styles/StyledHome";
-import { StyledTitle } from "../components/styles/StyledTitle";
-import ProgressBar from "../components/ProgressBar";
-import Button from "../components/Button";
+import { StyledHome } from "./StyledHome";
+import { StyledTitle } from "../../components/Navbar/styles/StyledTitle";
+import ProgressBar from "../../components/ProgressBar";
+import Button from "../../components/Button/index";
 
 const Home = () => {
   return (
@@ -11,13 +11,13 @@ const Home = () => {
           <StyledTitle className="large">How's your reading going?</StyledTitle>
           <div className="book-progress-container">
             <div className="book-progress">
-              <img src={require("../images/dearEdward.jpg")} alt="" />
+              <img src={require("../../images/dearEdward.jpg")} alt="" />
               <div className="progress-bar-container">
                 <ProgressBar completed={60} />
               </div>
             </div>
             <div className="book-progress">
-              <img src={require("../images/tattooist.jpg")} alt="" />
+              <img src={require("../../images/tattooist.jpg")} alt="" />
               <div className="progress-bar-container">
                 <ProgressBar completed={30} />
               </div>
@@ -47,10 +47,10 @@ const Home = () => {
       <div className="recommended-for-you-container">
         <StyledTitle className="large">Recommended for you</StyledTitle>
         <div className="recommended-books-container">
-          <img src={require("../images/theDoorsOfEden.jpg")} alt="" />
-          <img src={require("../images/queenOfNothing.jpg")} alt="" />
-          <img src={require("../images/songOfAchilles.jpg")} alt="" />
-          <img src={require("../images/sunSister.jpg")} alt="" />
+          <img src={require("../../images/theDoorsOfEden.jpg")} alt="" />
+          <img src={require("../../images/queenOfNothing.jpg")} alt="" />
+          <img src={require("../../images/songOfAchilles.jpg")} alt="" />
+          <img src={require("../../images/sunSister.jpg")} alt="" />
         </div>
       </div>
     </StyledHome>

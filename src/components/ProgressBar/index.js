@@ -1,4 +1,4 @@
-import { StyledProgressBar } from "./styles/StyledProgressBar";
+import { StyledProgressBar } from "./StyledProgressBar";
 
 const ProgressBar = ({ completed }) => {
   return (

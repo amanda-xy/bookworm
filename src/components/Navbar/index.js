@@ -1,6 +1,6 @@
-import { StyledNavbar } from "./styles/StyledNavbar";
+import { StyledNavbar } from "./StyledNavbar";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as Logo } from "../images/logo.svg";
+import { ReactComponent as Logo } from "../../images/logo.svg";
 
 const Navbar = () => {
   return (

@@ -1,9 +1,9 @@
-import { getAuthorsQuery, addBookMutation } from "../queries/queries";
+import { getAuthorsQuery, addBookMutation } from "../../queries/queries";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { StyledAddBook } from "./styles/StyledAddBook";
-import { StyledTitle } from "./styles/StyledTitle";
-import Button from "./Button";
+import { StyledAddBook } from "./StyledAddBook";
+import { StyledTitle } from "../Navbar/styles/StyledTitle";
+import Button from "../Button";
 
 const AddBook = (props) => {
   const uploadImage = async (e) => {

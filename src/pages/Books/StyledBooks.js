@@ -20,6 +20,7 @@ export const StyledBooks = styled.div`
     margin-top: 20px;
     margin-bottom: 70px;
     padding: 20px 25px;
+    height: 170px;
 
     img {
       height: 130px;
@@ -39,6 +40,7 @@ export const StyledBooks = styled.div`
     border-radius: 10px;
     margin-top: 20px;
     padding: 20px 25px;
+    height: 170px;
 
     img {
       height: 130px;

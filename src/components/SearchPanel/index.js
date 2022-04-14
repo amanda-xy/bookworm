@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { StyledSearchPanel } from "./styles/StyledSearchPanel";
-import { ReactComponent as SearchIcon } from "../images/search_icon.svg";
-import { OutCloseContainer } from "./OutCloseContainer";
+import { StyledSearchPanel } from "./StyledSearchPanel";
+import { ReactComponent as SearchIcon } from "../../images/search_icon.svg";
+import { OutCloseContainer } from "../OutCloseContainer";
 
 export default function SearchPanel(props) {
   const [searchBarActive, setSearchBarActive] = useState(false);

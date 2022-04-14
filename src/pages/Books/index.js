@@ -1,13 +1,13 @@
-import { StyledBooks } from "../styles/StyledBooks";
-import { StyledTitle } from "../components/styles/StyledTitle";
+import { StyledBooks } from "./StyledBooks";
+import { StyledTitle } from "../../components/Navbar/styles/StyledTitle";
 import { useQuery } from "@apollo/client";
-import { getBooksQuery } from "../queries/queries";
-import SearchPanel from "../components/SearchPanel";
-import Button from "../components/Button";
-import AddBook from "../components/AddBook";
+import { getBooksQuery } from "../../queries/queries";
+import SearchPanel from "../../components/SearchPanel";
+import Button from "../../components/Button/index";
+import AddBook from "../../components/AddBook";
 import { useState } from "react";
 import classNames from "classnames";
-import { OutCloseContainer } from "../components/OutCloseContainer";
+import { OutCloseContainer } from "../../components/OutCloseContainer";
 
 const Books = () => {
   const { loading, error, data } = useQuery(getBooksQuery);

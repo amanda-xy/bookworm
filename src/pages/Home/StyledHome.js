@@ -5,13 +5,13 @@ export const StyledHome = styled.div`
   padding: 0px 100px;
   flex-direction: column;
   height: fit-content;
+  /* width: 100%; */
 
   .reading-data-container {
     display: flex;
     flex-direction: row;
     background-color: #e8d2e9;
     padding: 30px 40px;
-    width: 100%;
     border-radius: 10px;
     justify-content: space-between;
   }
@@ -53,7 +53,6 @@ export const StyledHome = styled.div`
     width: 400px;
     height: 100%;
     min-height: 100%;
-    position: relative;
 
     .achievements {
       margin-top: 10px;
