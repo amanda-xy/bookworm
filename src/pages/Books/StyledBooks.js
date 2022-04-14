@@ -25,8 +25,7 @@ export const StyledBooks = styled.div`
   .arrow-icon {
     fill: #251462;
     transform: rotate(90deg);
-    height: 70px;
-    stroke: #251462;
+    height: 50px;
 
     &:hover {
       cursor: pointer;

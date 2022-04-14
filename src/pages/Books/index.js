@@ -1,5 +1,5 @@
 import { StyledBooks } from "./StyledBooks";
-import { StyledTitle } from "../../components/Navbar/styles/StyledTitle";
+import { StyledTitle } from "../../components/styles/StyledTitle";
 import { useQuery } from "@apollo/client";
 import { getBooksQuery } from "../../queries/queries";
 import SearchPanel from "../../components/SearchPanel";

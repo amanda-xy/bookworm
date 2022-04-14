@@ -1,5 +1,5 @@
 import { StyledHome } from "./StyledHome";
-import { StyledTitle } from "../../components/Navbar/styles/StyledTitle";
+import { StyledTitle } from "../../components/styles/StyledTitle";
 import ProgressBar from "../../components/ProgressBar";
 import Button from "../../components/Button/index";
 
