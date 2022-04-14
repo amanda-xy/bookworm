@@ -68,7 +68,7 @@ export const StyledNavbar = styled.nav`
         width: 5px;
         left: 50%;
         opacity: 1;
-        transition: 0.2s opacity 0.2s ease;
+        transition: opacity 0.3s ease;
       }
     }
   }

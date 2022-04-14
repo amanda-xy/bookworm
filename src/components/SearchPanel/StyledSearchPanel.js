@@ -26,6 +26,7 @@ export const StyledSearchPanel = styled.div`
 
   .search-icon {
     overflow: visible;
+    fill: #251462;
 
     &:hover {
       fill: #6044f2;

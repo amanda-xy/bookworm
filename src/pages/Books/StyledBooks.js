@@ -12,6 +12,27 @@ export const StyledBooks = styled.div`
     width: 100%;
   }
 
+  .books-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .arrow-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow-icon {
+    fill: #251462;
+    transform: rotate(90deg);
+    height: 70px;
+    stroke: #251462;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   .bookshelf-container {
     display: flex;
     flex-direction: row;
@@ -21,6 +42,7 @@ export const StyledBooks = styled.div`
     margin-bottom: 70px;
     padding: 20px 25px;
     height: 170px;
+    width: 100%;
 
     img {
       height: 130px;

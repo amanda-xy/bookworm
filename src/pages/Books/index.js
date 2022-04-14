@@ -8,6 +8,9 @@ import AddBook from "../../components/AddBook";
 import { useState } from "react";
 import classNames from "classnames";
 import { OutCloseContainer } from "../../components/OutCloseContainer";
+import { Link } from "react-router-dom";
+import { ReactComponent as ArrowIcon } from "../../images/thin_arrow_icon.svg";
+import { ReactComponent as Arrow } from "../../images/arrow_icon.svg";
 
 const Books = () => {
   const { loading, error, data } = useQuery(getBooksQuery);
@@ -27,7 +30,25 @@ const Books = () => {
           spaceBetween={false}
         />
 
-        <div className="bookshelf-container">{loading ? <p>Loading books</p> : data.books.map((book) => <img key={book.id} src={book.image} alt={book.title} />)}</div>
+        <div className="bookshelf-container">
+          <div className="books-container">
+            {loading ? (
+              <p>Loading books</p>
+            ) : (
+              data.books.map((book) => (
+                <Link to={`/books/${book.id}`} key={book.id}>
+                  <img src={book.image} alt={book.title} />{" "}
+                </Link>
+              ))
+            )}
+          </div>
+          <div className="arrow-container">
+            <Link to="/books/my-bookshelf">
+              <ArrowIcon className="arrow-icon" />
+            </Link>
+          </div>
+        </div>
+
         <SearchPanel
           fontFamily="Quicksand"
           fontSize="24px"
@@ -38,7 +59,22 @@ const Books = () => {
           spaceBetween={false}
         />
         <div className="currently-reading-container">
-          {loading ? <p>Loading books</p> : data.books.map((book) => <img key={book.id} src={book.image} alt={book.title} />)}
+          <div className="books-container">
+            {loading ? (
+              <p>Loading books</p>
+            ) : (
+              data.books.map((book) => (
+                <Link to={`/books/${book.id}`} key={book.id}>
+                  <img src={book.image} alt={book.title} />{" "}
+                </Link>
+              ))
+            )}
+          </div>
+          <div className="arrow-container">
+            <Link to="/books/currently-reading">
+              <ArrowIcon className="arrow-icon" />
+            </Link>
+          </div>
         </div>
       </div>
 
