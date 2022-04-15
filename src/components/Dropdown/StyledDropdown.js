@@ -100,6 +100,7 @@ export const StyledDropdownMenu = styled.div`
   width: 100%;
   padding: 0px 10px 10px 10px;
   overflow: hidden;
+  z-index: 10;
 
   &.visible {
     animation: hide-scroll 1.2s backwards;
