@@ -51,14 +51,19 @@ const getBookQuery = gql`
     book(id: $id) {
       id
       title
+      description
+      numberOfPages
+      image
       genre
+      publicationDate
       author {
         id
         firstName
         lastName
+
         books {
-          title
           id
+          title
         }
       }
     }

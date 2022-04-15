@@ -11,7 +11,7 @@ export const StyledBookListItem = styled.div`
   position: relative;
 
   .book-info-progress-container {
-    height: ${(props) => (props.updateProgress ? "149px" : "130px")};
+    height: ${(props) => (props.updateProgress ? "145px" : "120px")};
   }
 
   .book-image-info-container {
@@ -95,7 +95,7 @@ export const StyledBookListItem = styled.div`
 
   .update-progress-container {
     position: absolute;
-    top: 149px;
+    top: 142px;
     left: 0;
     padding: 0px 12px 10px 12px;
     transition: all 1s ease-in-out;
