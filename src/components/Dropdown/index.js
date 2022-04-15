@@ -17,7 +17,7 @@ const Dropdown = ({ items }) => {
             <button onClick={() => setHidden(!hidden)}>
               <span>{item.title}</span>
               <div className="arrow-container">
-                <Arrow width={25} height={25} className={hidden ? "down" : "up"} />
+                <Arrow width={27} height={27} className={hidden ? "down" : "up"} />
               </div>
             </button>
             <StyledDropdownMenu className={classNames(hidden ? "hidden" : "visible")}>

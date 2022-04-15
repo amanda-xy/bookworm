@@ -10,7 +10,6 @@ import classNames from "classnames";
 import { OutCloseContainer } from "../../components/OutCloseContainer";
 import { Link } from "react-router-dom";
 import { ReactComponent as ArrowIcon } from "../../images/thin_arrow_icon.svg";
-import { ReactComponent as Arrow } from "../../images/arrow_icon.svg";
 
 const Books = () => {
   const { loading, error, data } = useQuery(getBooksQuery);

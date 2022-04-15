@@ -14,11 +14,6 @@ const getBooksQuery = gql`
         id
         firstName
         lastName
-
-        books {
-          id
-          title
-        }
       }
     }
   }
@@ -27,9 +22,9 @@ const getBooksQuery = gql`
 const getAuthorsQuery = gql`
   {
     authors {
+      id
       firstName
       lastName
-      id
     }
   }
 `;

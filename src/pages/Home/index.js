@@ -2,6 +2,7 @@ import { StyledHome } from "./StyledHome";
 import { StyledTitle } from "../../components/styles/StyledTitle";
 import ProgressBar from "../../components/ProgressBar";
 import Button from "../../components/Button/index";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -40,7 +41,9 @@ const Home = () => {
             </p>
           </div>
           <div className="update-button-container">
-            <Button text="Update your progress" />
+            <Link to="/books/currently-reading">
+              <Button text="Update your progress" />
+            </Link>
           </div>
         </div>
       </div>

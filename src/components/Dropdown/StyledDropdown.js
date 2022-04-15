@@ -10,9 +10,11 @@ export const StyledDropdown = styled.div`
     background-color: #fcfcfc;
     border-radius: 15px;
   }
+
   &.open {
     .inner {
       box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 10px 2px;
+      border-radius: 15px;
     }
 
     span {
@@ -47,7 +49,7 @@ export const StyledDropdown = styled.div`
     white-space: nowrap;
     display: flex;
     color: #251462;
-    padding: 15px 20px 10px 37px;
+    padding: 15px 15px 10px 20px;
     font-family: Quicksand;
     font-weight: 600;
 
@@ -96,7 +98,7 @@ export const StyledDropdownMenu = styled.div`
   transition: all 1s ease-in-out;
   border-radius: 5px;
   width: 100%;
-  padding: 0px 20px 10px 20px;
+  padding: 0px 10px 10px 10px;
   overflow: hidden;
 
   &.visible {
@@ -135,22 +137,17 @@ export const StyledDropdownMenu = styled.div`
 export const StyledDropdownItem = styled.div`
   text-align: left;
   margin-top: 8px;
-  padding: 15px 17px 15px 17px;
+  padding: 15px 17px 15px 10px;
   font-size: 18px;
   overflow-wrap: break-word;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 100%;
   font-weight: 600;
   color: #251462;
   background-color: #fcfcfc;
 
   &:hover {
-    color: #6044f2;
+    background-color: #e8d2e9;
     cursor: pointer;
-  }
-
-  &:active {
-    background-color: #f1eeff;
-    color: #6044f2;
   }
 `;
