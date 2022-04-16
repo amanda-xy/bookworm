@@ -20,6 +20,15 @@ const BookDetails = () => {
             <StyledTitle className="large">{data.book.title}</StyledTitle>
             <div className="description-container">
               <p className="description">{data.book.description}</p>
+              <img className="book-image" src={data.book.image} alt={data.book.title} />
+            </div>
+            <div className="book-info">
+              <p>
+                Author: {data.book.author.firstName} {data.book.author.lastName}
+              </p>
+              <p>Genre: {data.book.genre}</p>
+              <p>Number of pages: {data.book.numberOfPages}</p>
+              <p>Rating: {data.book.rating}</p>
             </div>
           </div>
           <div className="side-container">

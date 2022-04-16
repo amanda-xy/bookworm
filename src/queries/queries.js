@@ -10,6 +10,7 @@ const getBooksQuery = gql`
       image
       genre
       publicationDate
+      rating
       author {
         id
         firstName
@@ -56,6 +57,7 @@ const getBookQuery = gql`
       image
       genre
       publicationDate
+      rating
       author {
         id
         firstName

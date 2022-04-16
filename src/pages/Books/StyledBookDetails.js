@@ -20,12 +20,24 @@ export const StyledBookDetails = styled.div`
       padding: 20px 40px;
       border-radius: 10px;
       margin-top: 20px;
+      position: relative;
 
       .description {
         color: #251462;
         font-weight: 600;
         font-size: 16px;
       }
+
+      .book-image {
+        position: absolute;
+        left: 60%;
+        bottom: -320px;
+        height: 350px;
+        border-radius: 10px;
+      }
+    }
+
+    .book-info {
     }
   }
 
