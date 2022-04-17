@@ -37,7 +37,30 @@ export const StyledBookDetails = styled.div`
       }
     }
 
+    .title {
+      margin-left: 5px;
+    }
+
     .book-info {
+      margin-top: 15px;
+      margin-left: 5px;
+      p {
+        color: #251462;
+        font-weight: 600;
+      }
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      margin-top: 15px;
+
+      button {
+        margin-bottom: 10px;
+        font-size: 14px;
+        width: fit-content;
+      }
     }
   }
 
