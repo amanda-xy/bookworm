@@ -1,7 +1,9 @@
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+const dbConnection = require("./db");
+
 const cors = require("cors");
 
 const app = express();
@@ -11,10 +13,11 @@ app.use(express.json({ limit: "50mb" }));
 // allow cross-origin requests
 app.use(cors());
 
-mongoose.connect("mongodb+srv://amanda:3BwMFYcHW9WeWwbN@cluster0.qmivw.mongodb.net/bookworm?retryWrites=true&w=majority");
-mongoose.connection.once("open", () => {
-  console.log("connected to database");
-});
+// mongoose.connect("mongodb+srv://amanda:3BwMFYcHW9WeWwbN@cluster0.qmivw.mongodb.net/bookworm?retryWrites=true&w=majority");
+// mongoose.connection.once("open", () => {
+//   console.log("connected to database");
+// });
+dbConnection.getConnection();
 
 app.use(
   "/graphql",
