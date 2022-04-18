@@ -11,6 +11,7 @@ const getConnection = () => {
   getCollection("books");
   getCollection("users");
   getCollection("readingLogs");
+  getCollection("reviews");
   getEdgeCollection("writtenBy", arangojs.CollectionType.EDGE_COLLECTION);
   getEdgeCollection("bookshelf", arangojs.CollectionType.EDGE_COLLECTION);
   getEdgeCollection("reading", arangojs.CollectionType.EDGE_COLLECTION);
