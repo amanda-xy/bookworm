@@ -2,7 +2,7 @@ import { StyledCurrentlyReading } from "./StyledCurrentlyReading";
 import FilterPanel from "../../components/FilterPanel";
 import { StyledTitle } from "../../components/styles/StyledTitle";
 import { useQuery } from "@apollo/client";
-import { getBooksQuery } from "../../queries/queries";
+import { getBooksQuery } from "../../queries/bookQueries";
 import BookList from "../../components/BookList";
 
 const CurrentlyReading = () => {

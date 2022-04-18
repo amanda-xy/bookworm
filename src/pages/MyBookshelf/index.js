@@ -3,7 +3,7 @@ import FilterPanel from "../../components/FilterPanel";
 import { StyledTitle } from "../../components/styles/StyledTitle";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { getBooksQuery } from "../../queries/queries";
+import { getBooksQuery } from "../../queries/bookQueries";
 import BookList from "../../components/BookList";
 
 const MyBookshelf = () => {

@@ -1,6 +1,6 @@
 import { StyledBookDetails } from "./StyledBookDetails";
 import { useParams } from "react-router-dom";
-import { getBookQuery } from "../../queries/queries";
+import { getBookQuery } from "../../queries/bookQueries";
 import { useQuery } from "@apollo/client";
 import { StyledTitle } from "../../components/styles/StyledTitle";
 import Button from "../../components/Button";

@@ -1,4 +1,5 @@
-import { getAuthorsQuery, addBookMutation } from "../../queries/queries";
+import { addBookMutation } from "../../queries/bookQueries";
+import { getAuthorsQuery } from "../../queries/authorQueries";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { StyledAddBook } from "./StyledAddBook";
