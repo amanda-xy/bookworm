@@ -1,7 +1,4 @@
 const graphql = require("graphql");
-const Book = require("../models/book");
-const Author = require("../models/author");
-// const Review = require("../models/review");
 
 const dbConnection = require("../db");
 const arangojs = require("arangojs");
@@ -102,6 +99,168 @@ const AuthorType = new GraphQLObjectType({
   }),
 });
 
+const UserType = new GraphQLObjectType({
+  name: "User",
+  fields: () => ({
+    id: { type: GraphQLString },
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    email: { type: GraphQLString },
+    password: { type: GraphQLString },
+    books: {
+      type: new GraphQLList(BookType),
+      async resolve(parent, args) {
+        // return _.filter(books, { authorId: parent.id });
+
+        const idCursor = await db.query(aql`
+        for user IN users
+        filter user._key == ${parent.id}
+        return user._id
+        `);
+
+        const id = await idCursor.all();
+
+        const cursor = await db.query(aql`
+        for book IN 1..1 OUTBOUND ${id[0]} bookshelf, reading, review
+        return { id: book._key, title: book.title, description: book.description, image: book.image, numberOfPages: book.numberOfPages, publicationDate: book.publicationDate, rating: book.rating }
+        `);
+        return await cursor.all();
+        // return Book.find({ authorId: parent.id });
+      },
+    },
+    currentlyReadingBooks: {
+      type: new GraphQLList(BookType),
+      async resolve(parent, args) {
+        const idCursor = await db.query(aql`
+        for user IN users
+        filter user._key == ${parent.id}
+        return user._id
+        `);
+
+        const id = await idCursor.all();
+
+        const cursor = await db.query(aql`
+        for book IN 1..1 OUTBOUND ${id[0]} reading
+        return { id: book._key, title: book.title, description: book.description, image: book.image, numberOfPages: book.numberOfPages, publicationDate: book.publicationDate, rating: book.rating }
+        `);
+        return await cursor.all();
+      },
+    },
+    reviewedBooks: {
+      type: new GraphQLList(BookType),
+      async resolve(parent, args) {
+        const idCursor = await db.query(aql`
+        for user IN users
+        filter user._key == ${parent.id}
+        return user._id
+        `);
+
+        const id = await idCursor.all();
+
+        const cursor = await db.query(aql`
+        for book IN 1..1 OUTBOUND ${id[0]} review
+        return { id: book._key, title: book.title, description: book.description, image: book.image, numberOfPages: book.numberOfPages, publicationDate: book.publicationDate, rating: book.rating }
+        `);
+        return await cursor.all();
+      },
+    },
+    bookshelfBooks: {
+      type: new GraphQLList(BookType),
+      async resolve(parent, args) {
+        const idCursor = await db.query(aql`
+        for user IN users
+        filter user._key == ${parent.id}
+        return user._id
+        `);
+
+        const id = await idCursor.all();
+
+        const cursor = await db.query(aql`
+        for book IN 1..1 OUTBOUND ${id[0]} bookshelf
+        return { id: book._key, title: book.title, description: book.description, image: book.image, numberOfPages: book.numberOfPages, publicationDate: book.publicationDate, rating: book.rating }
+        `);
+        return await cursor.all();
+      },
+    },
+  }),
+});
+
+const ReadingLogType = new GraphQLObjectType({
+  name: "ReadingLog",
+  fields: () => ({
+    id: { type: GraphQLString },
+    startDate: { type: GraphQLString },
+    endDate: { type: GraphQLString },
+    entries: {
+      type: new GraphQLList(LogEntryType),
+      async resolve(parent, args) {
+        const idCursor = await db.query(aql`
+        for readingLog IN readingLogs
+        filter readingLog._key == ${parent.id}
+        return readingLog.entries
+        `);
+
+        return await idCursor.all();
+      },
+    },
+    book: {
+      type: new GraphQLList(BookType),
+      async resolve(parent, args) {
+        // return _.filter(books, { authorId: parent.id });
+
+        const idCursor = await db.query(aql`
+        for readingLog IN readingLogs
+        filter readingLog._key == ${parent.id}
+        return readingLog._id
+        `);
+
+        const id = await idCursor.all();
+
+        const cursor = await db.query(aql`
+        for book IN 1..1 INBOUND ${id[0]} log 
+        return { id: book._key, title: book.title, description: book.description, image: book.image, numberOfPages: book.numberOfPages, publicationDate: book.publicationDate, rating: book.rating }
+        `);
+
+        const book = await cursor.all();
+        return book[0];
+        // return Book.find({ authorId: parent.id });
+      },
+    },
+
+    user: {
+      type: new GraphQLList(UserType),
+      async resolve(parent, args) {
+        // return _.filter(books, { authorId: parent.id });
+
+        const idCursor = await db.query(aql`
+        for readingLog IN readingLogs
+        filter readingLog._key == ${parent.id}
+        return readingLog._id
+        `);
+
+        const id = await idCursor.all();
+
+        const cursor = await db.query(aql`
+        for user IN 1..1 INBOUND ${id[0]} log 
+        return {id: user._key, email: user.email, firstName: user.firstName, lastName: user.lastName}
+        `);
+
+        const book = await cursor.all();
+        return book[0];
+        // return Book.find({ authorId: parent.id });
+      },
+    },
+  }),
+});
+
+const LogEntryType = new GraphQLObjectType({
+  name: "LogEntry",
+  fields: () => ({
+    date: { type: new GraphQLNonNull(GraphQLString) },
+    pageNumber: { type: new GraphQLNonNull(GraphQLInt) },
+  }),
+});
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -139,6 +298,22 @@ const RootQuery = new GraphQLObjectType({
         // return Author.findById(args.id);
       },
     },
+    user: {
+      type: UserType,
+      args: { id: { type: GraphQLID } },
+      async resolve(parent, args) {
+        // return _.find(authors, { id: args.id });
+        const cursor = await db.query(aql`
+        for user in users 
+          filter user._key == ${args.id}
+            return {id: user._key, firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password }
+        `);
+
+        const users = await cursor.all();
+        return users[0];
+        // return Author.findById(args.id);
+      },
+    },
     // review: {
     //   type: ReviewType,
     //   args: { id: { type: GraphQLID } },
@@ -166,6 +341,17 @@ const RootQuery = new GraphQLObjectType({
         const cursor = await db.query(aql`
         for author in authors
         return {id: author._key, firstName: author.firstName, lastName: author.lastName, image: author.image, biography: author.biography, birthDate: author.birthDate, averageRating: author.averageRating }
+        `);
+        return await cursor.all();
+      },
+    },
+
+    users: {
+      type: new GraphQLList(UserType),
+      async resolve(parent, args) {
+        const cursor = await db.query(aql`
+        for user in users
+        return {id: user._key, firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password }
         `);
         return await cursor.all();
       },
@@ -230,18 +416,140 @@ const Mutation = new GraphQLObjectType({
           publicationDate: args.publicationDate,
         };
 
+        const idCursor = await db.query(aql`
+        for author IN authors
+        filter author._key == ${args.authorId}
+        return author._id
+        `);
+
+        const id = await idCursor.all();
+
         const booksCollection = await dbConnection.getCollection("books");
         const writtenByCollection = await dbConnection.getCollection("writtenBy");
 
         const newBook = await booksCollection.save(book);
         const edge = {
           _from: newBook._id,
-          _to: args.authorId,
+          _to: id[0],
         };
 
         await writtenByCollection.save(edge);
       },
     },
+    addUser: {
+      type: UserType,
+      args: {
+        firstName: { type: new GraphQLNonNull(GraphQLString) },
+        lastName: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      async resolve(parent, args) {
+        let user = {
+          firstName: args.firstName,
+          lastName: args.lastName,
+          email: args.email,
+          password: args.password,
+        };
+
+        const usersCollection = await dbConnection.getCollection("users");
+        usersCollection.save(user).then(
+          () => console.log("Saved!"),
+          (err) => console.log("failed to save")
+        );
+      },
+    },
+
+    addToBookshelf: {
+      type: UserType,
+      args: {
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        bookId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      async resolve(parent, args) {
+        const userIdCursor = await db.query(aql`
+        for user IN users
+        filter user._key == ${args.userId}
+        return user._id
+        `);
+
+        const userId = await userIdCursor.all();
+
+        const bookIdCursor = await db.query(aql`
+        for book IN books
+        filter book._key == ${args.bookId}
+        return book._id
+        `);
+
+        const bookId = await bookIdCursor.all();
+
+        let bookshelfEdge = {
+          _from: userId[0],
+          _to: bookId[0],
+        };
+
+        const bookshelfCollection = await dbConnection.getCollection("bookshelf");
+        bookshelfCollection.save(bookshelfEdge);
+      },
+    },
+    addReadingLog: {
+      type: ReadingLogType,
+      args: {
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        bookId: { type: new GraphQLNonNull(GraphQLID) },
+        startDate: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      async resolve(parent, args) {
+        const userIdCursor = await db.query(aql`
+        for user IN users
+        filter user._key == ${args.userId}
+        return user._id
+        `);
+
+        const userId = await userIdCursor.all();
+
+        const bookIdCursor = await db.query(aql`
+        for book IN books
+        filter book._key == ${args.bookId}
+        return book._id
+        `);
+
+        const bookId = await bookIdCursor.all();
+
+        let readingLog = {
+          startDate: args.startDate,
+          entries: [{ date: args.startDate, pageNumber: 0 }],
+        };
+
+        const readingLogsCollection = await dbConnection.getCollection("readingLogs");
+        readingLog = await readingLogsCollection.save(readingLog);
+
+        let logEdgeUser = {
+          _from: userId[0],
+          _to: readingLog._id,
+        };
+
+        const logCollection = await dbConnection.getCollection("log");
+        await logCollection.save(logEdgeUser);
+
+        let logEdgeBook = {
+          _from: readingLog._id,
+          _to: bookId[0],
+        };
+
+        await logCollection.save(logEdgeBook);
+
+        let readingEdge = {
+          _from: userId[0],
+          _to: bookId[0],
+          readingLogId: readingLog._id,
+        };
+
+        const readingCollection = await dbConnection.getCollection("reading");
+        await readingCollection.save(readingEdge);
+      },
+    },
+
     // addReview: {
     //   type: ReviewType,
     //   args: {

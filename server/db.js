@@ -9,7 +9,13 @@ const db = new arangojs.Database({
 const getConnection = () => {
   getCollection("authors");
   getCollection("books");
+  getCollection("users");
+  getCollection("readingLogs");
   getEdgeCollection("writtenBy", arangojs.CollectionType.EDGE_COLLECTION);
+  getEdgeCollection("bookshelf", arangojs.CollectionType.EDGE_COLLECTION);
+  getEdgeCollection("reading", arangojs.CollectionType.EDGE_COLLECTION);
+  getEdgeCollection("review", arangojs.CollectionType.EDGE_COLLECTION);
+  getEdgeCollection("log", arangojs.CollectionType.EDGE_COLLECTION);
   return db;
 };
 
