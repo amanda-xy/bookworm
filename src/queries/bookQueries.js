@@ -71,4 +71,12 @@ const addBookMutation = gql`
   }
 `;
 
-export { getBooksQuery, getBookQuery, addBookMutation };
+const addBookToBookshelf = gql`
+  mutation ($bookId: ID!, $userId: ID!) {
+    addToBookshelf(bookId: $bookId, userId: $userId) {
+      id
+    }
+  }
+`;
+
+export { getBooksQuery, getBookQuery, addBookMutation, addBookToBookshelf };

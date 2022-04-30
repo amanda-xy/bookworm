@@ -331,7 +331,7 @@ const RootQuery = new GraphQLObjectType({
         const cursor = await db.query(aql`
         for book in books 
           filter book._key == ${args.id}
-            return { id: book._key, title: book.title, description: book.description, image: book.image, numberOfPages: book.numberOfPages, publicationDate: book.publicationDate, rating: book.rating }
+            return { id: book._key, title: book.title, description: book.description, image: book.image, numberOfPages: book.numberOfPages, publicationDate: book.publicationDate, rating: book.rating, genre: book.genre }
         `);
 
         const books = await cursor.all();

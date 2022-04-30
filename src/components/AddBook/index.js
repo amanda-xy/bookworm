@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { StyledAddBook } from "./StyledAddBook";
 import { StyledTitle } from "../styles/StyledTitle";
 import Button from "../Button";
+import moment from "moment";
 
 const AddBook = (props) => {
   const uploadImage = async (e) => {
@@ -143,10 +144,10 @@ const AddBook = (props) => {
         <div className="field">
           <label>Publication date</label>
           <input
-            type="text"
+            type="date"
             onChange={(e) =>
               setBookData((prev) => {
-                return { ...prev, publicationDate: e.target.value };
+                return { ...prev, publicationDate: moment(e.target.value).format("MMM Do YYYY") };
               })
             }
           />
