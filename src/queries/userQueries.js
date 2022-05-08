@@ -138,10 +138,19 @@ const addUserMutation = gql`
   }
 `;
 
+const updateUserMutation = gql`
+  mutation ($id: ID!, $firstName: String, $lastName: String, $email: String, $password: String) {
+    updateUser(id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+      id
+    }
+  }
+`;
+
 export {
   getUsersQuery,
   getUserQuery,
   addUserMutation,
+  updateUserMutation,
   getAllBooksForUser,
   getBookshelfBooksForUser,
   getCurrentlReadingBooksForUser,

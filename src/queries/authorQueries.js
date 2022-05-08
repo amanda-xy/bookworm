@@ -29,4 +29,12 @@ const addAuthorMutation = gql`
   }
 `;
 
-export { getAuthorsQuery, addAuthorMutation };
+const updateAuthorMutation = gql`
+  mutation ($id: ID!, $firstName: String, $lastName: String, $image: String, $birthDate: String, $biography: String) {
+    updateAuthor(id: $id, firstName: $firstName, lastName: $lastName, biography: $biography, image: $image, birthDate: $birthDate) {
+      id
+    }
+  }
+`;
+
+export { getAuthorsQuery, addAuthorMutation, updateAuthorMutation };

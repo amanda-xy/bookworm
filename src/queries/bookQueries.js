@@ -71,6 +71,24 @@ const addBookMutation = gql`
   }
 `;
 
+const updateBookMutation = gql`
+  mutation ($id: ID!, $title: String, $description: String, $numberOfPages: Int, $image: String, $genre: String, $publicationDate: String, $authorId: ID) {
+    updateBook(
+      id: $id
+      title: $title
+      description: $description
+      numberOfPages: $numberOfPages
+      image: $image
+      genre: $genre
+      publicationDate: $publicationDate
+      authorId: $authorId
+    ) {
+      id
+      title
+    }
+  }
+`;
+
 const addBookToBookshelf = gql`
   mutation ($bookId: ID!, $userId: ID!) {
     addToBookshelf(bookId: $bookId, userId: $userId) {
@@ -79,4 +97,4 @@ const addBookToBookshelf = gql`
   }
 `;
 
-export { getBooksQuery, getBookQuery, addBookMutation, addBookToBookshelf };
+export { getBooksQuery, getBookQuery, addBookMutation, updateBookMutation, addBookToBookshelf };

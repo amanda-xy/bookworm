@@ -537,6 +537,30 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
+    updateAuthor: {
+      type: AuthorType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+        biography: { type: GraphQLString },
+        birthdate: { type: GraphQLString },
+        image: { type: GraphQLString },
+      },
+      async resolve(parent, args) {
+        let author = {
+          firstName: args.firstName,
+          lastName: args.lastName,
+          biography: args.biography,
+          birthDate: args.birthDate,
+          image: args.image,
+          averageRating: 0,
+        };
+
+        const authorsCollection = await dbConnection.getCollection("authors");
+        const result = await authorsCollection.update(args.id, author);
+      },
+    },
     addBook: {
       type: BookType,
       args: {
@@ -579,6 +603,33 @@ const Mutation = new GraphQLObjectType({
         await writtenByCollection.save(edge);
       },
     },
+    updateBook: {
+      type: BookType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: GraphQLString },
+        numberOfPages: { type: GraphQLInt },
+        image: { type: GraphQLString },
+        genre: { type: GraphQLString },
+        publicationDate: { type: GraphQLString },
+        authorId: { type: GraphQLID },
+      },
+      async resolve(parent, args) {
+        let book = {
+          title: args.title,
+          description: args.description,
+          numberOfPages: args.numberOfPages,
+          image: args.image,
+          genre: args.genre,
+          publicationDate: args.publicationDate,
+          authorId: args.authorId,
+        };
+
+        const booksCollection = await dbConnection.getCollection("books");
+        const result = await booksCollection.update(args.id, book);
+      },
+    },
     addUser: {
       type: UserType,
       args: {
@@ -603,6 +654,27 @@ const Mutation = new GraphQLObjectType({
       },
     },
 
+    updateUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+        email: { type: GraphQLString },
+        password: { type: GraphQLString },
+      },
+      async resolve(parent, args) {
+        let user = {
+          firstName: args.firstName,
+          lastName: args.lastName,
+          email: args.lastName,
+          password: args.password,
+        };
+
+        const usersCollection = await dbConnection.getCollection("users");
+        const result = await usersCollection.update(args.id, user);
+      },
+    },
     addToBookshelf: {
       type: UserType,
       args: {
